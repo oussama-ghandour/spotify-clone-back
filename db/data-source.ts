@@ -8,6 +8,16 @@ import { Playlist } from 'src/playlists/playlist.entity';
 import { Song } from 'src/songs/song.entity';
 import { User } from 'src/users/user.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import 'dotenv/config';
+
+
+// const path = require('path')
+/**load env var */
+// const envPath = path.resolve(__dirname, `.env.${process.env.NODE_ENV}`);
+// console.log(envPath);
+// require('dotenv').config({path: envPath});
+require('dotenv').config();
+
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
@@ -30,13 +40,14 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   },
 };
 
+
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT, 10),
   username: process.env.USERNAME,
   database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
+  password: process.env.PASSWORD,
   entities: ['dist/**/*.entity.js'], 
   synchronize: false, 
   migrations: ['dist/db/migrations/*.js'], 
