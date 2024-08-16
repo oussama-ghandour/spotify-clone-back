@@ -32,8 +32,8 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   // to enable seeding
-  // const seedService = app.get(SeedService);
-  // await seedService.seed();
+  const seedService = app.get(SeedService);
+  await seedService.seed();
   const configService = app.get(ConfigService);
   // await app.listen(configService.get<number>('port'));
   await app.listen(configService.get<number>('port'));

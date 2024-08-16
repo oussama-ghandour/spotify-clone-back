@@ -8,23 +8,23 @@ import { Playlist } from 'src/playlists/playlist.entity';
 import { Song } from 'src/songs/song.entity';
 import { User } from 'src/users/user.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import * as path from 'path';
+// import * as path from 'path';
 import * as dotenv from 'dotenv';
 
 // Load environment variables
 // const envPath = path.resolve(__dirname, `../.env.${process.env.NODE_ENV || 'development'}`);
-const envPath = path.resolve(__dirname, `../.env`);
-console.log('Loading .env file from:', envPath);
-dotenv.config({ path: envPath });
-// dotenv.config()
+// const envPath = path.resolve(__dirname, `../.env`);
+// console.log('Loading .env file from:', envPath);
+// dotenv.config({ path: envPath });
+dotenv.config()
 
 // Log environment variables to verify they are loaded
-console.log('DB_HOST:', process.env.DB_HOST);
-console.log('DB_PORT:', process.env.DB_PORT);
-console.log('USERNAME:', process.env.USERNAME);
-console.log('DB_NAME:', process.env.DB_NAME);
-console.log('PASSWORD:', process.env.PASSWORD); // Ensure this is a string
-console.log('db:', process.env.DATABASE_URL);
+// console.log('DB_HOST:', process.env.DB_HOST);
+// console.log('DB_PORT:', process.env.DB_PORT);
+// console.log('USERNAME:', process.env.USERNAME);
+// console.log('DB_NAME:', process.env.DB_NAME);
+// console.log('PASSWORD:', process.env.PASSWORD); 
+// console.log('db:', process.env.DATABASE_URL);
 // TypeORM configuration using ConfigService
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
