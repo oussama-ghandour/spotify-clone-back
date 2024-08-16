@@ -24,14 +24,16 @@ console.log('DB_PORT:', process.env.DB_PORT);
 console.log('USERNAME:', process.env.USERNAME);
 console.log('DB_NAME:', process.env.DB_NAME);
 console.log('PASSWORD:', process.env.PASSWORD); // Ensure this is a string
-
+console.log('db:', process.env.DATABASE_URL);
 // TypeORM configuration using ConfigService
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
   inject: [ConfigService],
   useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => {
+    const databaseUrl = configService.get<string>('DATABASE_URL');
     return {
       type: 'postgres',
+      url: databaseUrl, 
       host: configService.get<string>('DB_HOST'),
       port: configService.get<number>('DB_PORT'),
       username: configService.get<string>('USERNAME'),
@@ -47,11 +49,12 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
 // DataSource configuration
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
+  url: process.env.DATABASE_URL,
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT, 10),
   username: process.env.USERNAME,
   database: process.env.DB_NAME,
-  password: process.env.PASSWORD as string, // Ensure this is a string
+  password: process.env.PASSWORD as string,
   entities: ['dist/**/*.entity.js'],
   synchronize: false,
   migrations: ['dist/db/migrations/*.js'],
