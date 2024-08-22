@@ -20,16 +20,16 @@ describe('SongsController', () => {
         {
           provide: SongsService,
           useValue: {
-            create: jest.fn().mockResolvedValue({ id: 'a uuid', title: 'Runaway' }),
+            create: jest.fn().mockResolvedValue({ id: 'a uuid', title: 'test' }),
             findAll: jest.fn().mockResolvedValue({
-              items: [{ id: 1, title: 'Dancing Feat' }],
+              items: [{ id: 1, title: 'test song' }],
               meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 }
             }),
-            findOne: jest.fn().mockResolvedValue({ id: 1, title: 'Dancing' }),
+            findOne: jest.fn().mockResolvedValue({ id: 1, title: 'testing' }),
             update: jest.fn().mockResolvedValue({ affected: 1 }),
             remove: jest.fn().mockResolvedValue({ affected: 1 }),
             paginate: jest.fn().mockResolvedValue({
-              items: [{ id: 1, title: 'Dancing Feat' }],
+              items: [{ id: 1, title: 'test song' }],
               meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 }
             })
           }
@@ -52,14 +52,14 @@ describe('SongsController', () => {
   describe('create', () => {
     it('should create a new song', async () => {
       const newSongDTO: CreateSongDTO = {
-        title: 'Runaway',
+        title: 'test',
         artists: undefined,
         releaseDate: undefined,
         duration: undefined,
         lyrics: ''
       };
       const result = await controller.create(newSongDTO, {} as any);
-      expect(result).toEqual({ id: 'a uuid', title: 'Runaway' });
+      expect(result).toEqual({ id: 'a uuid', title: 'test' });
     });
   });
 
@@ -67,7 +67,7 @@ describe('SongsController', () => {
     it('should return a paginated list of songs', async () => {
       const result = await controller.findAll(1, 10);
       expect(result).toEqual({
-        items: [{ id: 1, title: 'Dancing Feat' }],
+        items: [{ id: 1, title: 'test song' }],
         meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 }
       });
     });
@@ -76,7 +76,7 @@ describe('SongsController', () => {
   describe('findOne', () => {
     it('should return a song by id', async () => {
       const result = await controller.findOne(1);
-      expect(result).toEqual({ id: 1, title: 'Dancing' });
+      expect(result).toEqual({ id: 1, title: 'testing' });
     });
   });
 
