@@ -5,7 +5,8 @@ import { CreateSongDTO } from './dto/create-song-dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateSongDto } from './dto/update-song-dto';
 import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
-import { Artist } from 'src/artists/artist.entity';
+import { Artist } from '../artists/artist.entity';
+
 
 @Injectable({
     scope: Scope.TRANSIENT,

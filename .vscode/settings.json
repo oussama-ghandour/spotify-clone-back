@@ -6,9 +6,9 @@
             "port": 5432,
             "driver": "PostgreSQL",
             "name": "local",
-            "database": "spotify-clone",
-            "username": "postgres",
-            "password": "hello1992"
+            "database": "",
+            "username": "",
+            "password": ""
         }
     ]
 }

@@ -6,12 +6,13 @@ import { Song } from './song.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateSongDto } from './dto/update-song-dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
-import { ArtistJwtGuard } from 'src/auth/artists-jwt-guard';
+import { ArtistJwtGuard } from '../auth/artists-jwt-guard';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller({path: 'songs', scope: Scope.REQUEST})
 @ApiTags('songs')
 export class SongsController {
+    [x: string]: any;
     constructor(
         private songsService: SongsService,
         @Inject('CONNECTION')
